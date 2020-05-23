@@ -12,17 +12,7 @@ spec:
     volumeMounts:
       - name: kaniko-secret
         mountPath: "/kaniko/.docker"
-      - name: dockerfile-storage
-        mountPath: "/workspace"
   restartPolicy: Never
-  initContainers:
-  - name: init-kaniko
-    image: yauritux/busybox-curl
-    imagePullPolicy: IfNotPresent
-    command: ["sh", "-c", "curl -k -o /workspace/Dockerfile https://raw.githubusercontent.com/bharatmicrosystems/kubernetes-kaniko-nginx/master/docker/Dockerfile"]
-    volumeMounts:
-    - mountPath: "/workspace"
-      name: dockerfile-storage
   volumes:
     - name: kaniko-secret
       secret:
@@ -30,5 +20,3 @@ spec:
         items:
           - key: .dockerconfigjson
             path: config.json
-    - name: dockerfile-storage
-      emptyDir: {}
