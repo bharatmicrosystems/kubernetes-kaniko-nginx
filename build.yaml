@@ -7,7 +7,7 @@ spec:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:latest
     args: ["--dockerfile=Dockerfile",
-            "--context=git://github.com/bharatmicrosystems/kubernetes-kaniko-nginx.git#refs/heads/mybranch",
+            "--context=git://github.com/bharatmicrosystems/kubernetes-kaniko-nginx.git#refs/heads/master",
             "--destination=bharamicrosystems/nginx:v4"]
     volumeMounts:
       - name: kaniko-secret
