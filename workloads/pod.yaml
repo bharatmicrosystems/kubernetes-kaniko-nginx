@@ -8,7 +8,7 @@ spec:
     image: gcr.io/kaniko-project/executor:latest
     args: ["--dockerfile=/workspace/Dockerfile",
             "--context=dir://workspace",
-            "--destination=<repo>/<image>"] # replace with your repo and image
+            "--destination=bharamicrosystems/nginx:v3"]
     volumeMounts:
       - name: kaniko-secret
         mountPath: "/kaniko/.docker"
@@ -19,7 +19,7 @@ spec:
   - name: init-kaniko
     image: yauritux/busybox-curl
     imagePullPolicy: IfNotPresent
-    command: ["sh", "-c", "curl -k -o /workspace/Dockerfile URL"] # replace URL with RAW Docker file on GIT (e.g. https://raw.githubusercontent.com/bharatmicrosystems/kubernetes-kaniko/master/docker/Dockerfile)
+    command: ["sh", "-c", "curl -k -o /workspace/Dockerfile https://raw.githubusercontent.com/bharatmicrosystems/kubernetes-kaniko-nginx/master/docker/Dockerfile"]
     volumeMounts:
     - mountPath: "/workspace"
       name: dockerfile-storage
