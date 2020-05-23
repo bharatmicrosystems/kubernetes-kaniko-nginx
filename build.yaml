@@ -6,9 +6,9 @@ spec:
   containers:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:latest
-    args: ["--dockerfile=/workspace/Dockerfile",
-            "--context=dir://workspace",
-            "--destination=bharamicrosystems/nginx:v3"]
+    args: ["--dockerfile=Dockerfile",
+            "--context=git://github.com/bharatmicrosystems/kubernetes-kaniko-nginx.git#refs/heads/mybranch",
+            "--destination=bharamicrosystems/nginx:v4"]
     volumeMounts:
       - name: kaniko-secret
         mountPath: "/kaniko/.docker"
